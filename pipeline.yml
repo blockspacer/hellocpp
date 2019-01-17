@@ -11,6 +11,7 @@ jobs:
   serial: true
   plan:
   - get: hello-repository
+    trigger: true
   - task: build-binary
     config:
       platform: linux
