@@ -22,18 +22,21 @@ jobs:
   plan:
   - get: hello-repository
     trigger: true
+
   - task: build-binary
     config:
       platform: linux
-      image_resource: 
-        type: docker-image
-        source: { repository: cloudfoundry/cflinuxfs3 }
       inputs:
       - name: hello-repository
+      outputs:
+      - name: build
+      image_resource:
+        type: docker-image
+        source: { repository: cloudfoundry/cflinuxfs3 }
       run:
-        path: g++
-        args: ["-o", "hello-repository/app/hello", "hello-repository/app/hello.cpp"]
+        path: hello-repository/build.sh
+
   - put: cloudfoundry
     params:
-      manifest: hello-repository/manifest
-      path: hello-repository/app/hello
+      manifest: hello-repository/app/manifest.yml
+      path: build/hello.zip
