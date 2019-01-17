@@ -6,8 +6,18 @@ resources:
     uri: https://github.com/fouadh/hellocpp.git
     branch: master
 
+- name: cloudfoundry
+  type: cf
+  source:
+    api: ((cf-api))
+    username: ((cf-username))
+    password: ((cf-password))
+    organization: ((cf-organization))
+    space: ((cf-space))
+    skip_cert_check: true
+
 jobs:
-- name: build-hello
+- name: deploy-hello
   serial: true
   plan:
   - get: hello-repository
@@ -20,5 +30,12 @@ jobs:
         source: { repository: cloudfoundry/cflinuxfs3 }
       inputs:
       - name: hello-repository
+      outputs:
+      - name: build
       run:
-        path: hello-repository/app/build.sh
+        path: g++
+        args: ["-o", "build/hello", "hello-repository/app/hello.cpp"]
+  - put: cloudfoundry
+    params:
+      manifest: hello-repository/manifest
+      path: build/hello
