@@ -19,8 +19,6 @@ jobs:
         type: docker-image
         source: { repository: cloudfoundry/cflinuxfs3 }
       inputs:
-      - name: app
-      outputs:
-      - name: release
+      - name: hello-repository
       run:
-        path: ./app/build.sh
+        path: hello-repository/app/build.sh
