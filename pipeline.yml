@@ -30,12 +30,10 @@ jobs:
         source: { repository: cloudfoundry/cflinuxfs3 }
       inputs:
       - name: hello-repository
-      outputs:
-      - name: build
       run:
         path: g++
-        args: ["-o", "build/hello", "hello-repository/app/hello.cpp"]
+        args: ["-o", "hello-repository/app/hello", "hello-repository/app/hello.cpp"]
   - put: cloudfoundry
     params:
       manifest: hello-repository/manifest
-      path: build/hello
+      path: hello-repository/app/hello
