@@ -1,0 +1,25 @@
+---
+resources:
+- name: hello-repository
+  type: git
+  source:
+    uri: https://github.com/fouadh/hellocpp.git
+    branch: master
+
+jobs:
+- name: build-hello
+  serial: true
+  plan:
+  - get: hello-repository
+  - task: build-binary
+    config:
+      platform: linux
+      image_resource: 
+        type: docker-image
+        source: { repository: cloudfoundry/cflinuxfs3 }
+      inputs:
+      - name: app
+      outputs:
+      - name: release
+      run:
+        path: ./app/build.sh
