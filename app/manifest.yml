@@ -2,5 +2,6 @@ applications:
 - name: hellocpp
   path: hello
   stack: cflinuxfs3
+  health-check-type: none
   buildpacks:
   - https://github.com/cloudfoundry/binary-buildpack.git
