@@ -1,0 +1,46 @@
+---
+resource_types:
+- name: kubernetes
+  type: docker-image
+  source:
+    repository: zlabjp/kubernetes-resource
+    tag: "1.13"
+
+resources:
+- name: hello-repository
+  type: git
+  source:
+    uri: https://github.com/fouadh/hellocpp.git
+    branch: master
+
+- name: dockerhub
+  type: docker-image
+  source:
+    email: ((docker-hub-email))
+    username: ((docker-hub-username))
+    password: ((docker-hub-password))
+    repository: ((docker-hub-username))/dockercpp
+
+- name: kubernetes
+  type: kubernetes
+  source:
+    server: ((k8s-server))
+    namespace: ((k8s-namespace))
+    token: ((k8s-token))
+    certificate_authority: ((k8s-ca))
+
+jobs:
+- name: deploy-hello
+  serial: true
+  plan:
+  - get: hello-repository
+    trigger: true
+
+  - put: dockerhub
+    params:
+      build: hello-repository
+
+  - put: kubernetes
+    params:
+      kubectl: apply -f hello-repository/k8s-deployment.yml
+      wait_until_ready: 300
