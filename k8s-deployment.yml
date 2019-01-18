@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellocpp
+  labels:
+    app: hellocpp
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: hellocpp
+      template:
+        metadata:
+          labels:
+            app: hellocpp
+        spec:
+          containers:
+          - name: hellocpp
+            image: foudhamdi/dockercpp
