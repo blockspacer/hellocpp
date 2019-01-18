@@ -1,2 +1,2 @@
 .vscode
-pipeline-unprotected.yml
+*.unprotected.yml

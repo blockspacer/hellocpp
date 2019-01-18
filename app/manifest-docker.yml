@@ -1,0 +1,5 @@
+applications:
+- name: dockercpp
+  health-check-type: none
+  docker:
+    image: fouadhamdi/dockercpp
