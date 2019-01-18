@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Compiling"
-g++ -o build/hello hello-repository/app/hello.cpp -static
+g++ -o build/app repository/app/*.cpp -static -lboost_system  -lboost_thread-mt -std=c++11
 
 echo "Archiving binaries"
-zip -r build/hello.zip build/hello hello-repository/Procfile
+zip -r build/app.zip build/app
