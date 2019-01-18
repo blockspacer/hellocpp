@@ -9,7 +9,10 @@ resources:
 - name: dockerhub
   type: docker-image
   source:
-    repository: fouadhamdi/dockercpp
+    email: ((docker-hub-email))
+    username: ((docker-hub-username))
+    password: ((docker-hub-password))
+    repository: ((docker-hub-username))/dockercpp
 
 - name: cloudfoundry
   type: cf
@@ -28,20 +31,10 @@ jobs:
   - get: hello-repository
     trigger: true
 
-  - task: build-binary
-    config:
-      platform: linux
-      inputs:
-      - name: hello-repository
-      outputs:
-      - name: build
-      image_resource:
-        type: docker-image
-        source: { repository: cloudfoundry/cflinuxfs3 }
-      run:
-        path: hello-repository/build.sh
+  - put: dockerhub
+    params:
+      build: hello-repository
 
   - put: cloudfoundry
     params:
-      manifest: hello-repository/app/manifest.yml
-      path: build/hello.zip
+      manifest: hello-repository/app/manifest-docker.yml
