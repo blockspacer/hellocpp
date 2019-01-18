@@ -9,11 +9,11 @@ spec:
   selector:
     matchLabels:
       app: hellocpp
-    template:
-      metadata:
-        labels:
-          app: hellocpp
-      spec:
-        containers:
-        - name: hellocpp
-          image: foudhamdi/dockercpp
+  template:
+    metadata:
+      labels:
+        app: hellocpp
+    spec:
+      containers:
+      - name: hellocpp
+        image: foudhamdi/dockercpp
