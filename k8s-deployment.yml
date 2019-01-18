@@ -17,3 +17,5 @@ spec:
       containers:
       - name: hellocpp
         image: foudhamdi/dockercpp
+      imagePullSecrets:
+      - name: regcred
