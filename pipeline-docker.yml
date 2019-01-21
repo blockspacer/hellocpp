@@ -1,6 +1,6 @@
 ---
 resources:
-- name: hello-repository
+- name: repository
   type: git
   source:
     uri: https://github.com/fouadh/hellocpp.git
@@ -25,16 +25,16 @@ resources:
     skip_cert_check: true
 
 jobs:
-- name: deploy-hello
+- name: deploy-app
   serial: true
   plan:
-  - get: hello-repository
+  - get: repository
     trigger: true
 
   - put: dockerhub
     params:
-      build: hello-repository
+      build: repository
 
   - put: cloudfoundry
     params:
-      manifest: hello-repository/app/manifest-docker.yml
+      manifest: repository/app/manifest-docker.yml
