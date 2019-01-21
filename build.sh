@@ -3,23 +3,16 @@
 echo "Building the app"
 #g++ -o build/app repository/app/*.cpp -static -lboost_system  -lboost_thread -std=c++11
 
-echo "Listing content of current dir:"
-ls -la .
+mkdir dist
 
-echo "Listing content of src dir:"
-ls -la repository
-
-echo "Listing content of build dir:"
-ls -la build
-
-
-cd build
+cd dist
 echo "Step 1"
-conan install repository/app
+conan install ../app
 echo "Step 2"
-cmake repository/app -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake ../app -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 echo "Step 3"
 cmake --build .
 
+cd ..
 echo "Archiving binaries"
 zip -r build/app.zip build/app
