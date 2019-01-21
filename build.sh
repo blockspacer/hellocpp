@@ -4,10 +4,16 @@ echo "Building the app"
 #g++ -o build/app repository/app/*.cpp -static -lboost_system  -lboost_thread -std=c++11
 
 mkdir ./dist
-
-cd ./dist
 echo "Content of current dir:"
 ls -la .
+
+echo "Content of repository:"
+ls -la repository
+
+echo "Content of build:"
+ls -la build
+
+cd dist
 
 echo "Step 1"
 conan install ../app
