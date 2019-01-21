@@ -19,5 +19,6 @@ cmake --build .
 
 echo "Step 4"
 echo "Archiving binaries"
+cp ../repository/app/index.html ./bin/
 cd bin
-zip -r ../app.zip app
+zip -r ../app.zip app index.html
