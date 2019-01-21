@@ -20,6 +20,10 @@ cmake --build .
 echo "Step 4"
 cd ..
 echo "Content of app dir:"
-ls -la app
+ls -la repository/app
+
+echo "Content of build dir:"
+ls -la build
+
 echo "Archiving binaries"
 zip -r build/app.zip repository/app/app
