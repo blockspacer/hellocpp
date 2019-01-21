@@ -10,11 +10,14 @@ ls -la ..
 
 echo "Step 1"
 conan install ../repository/app
+
 echo "Step 2"
 cmake ../repository/app -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+
 echo "Step 3"
 cmake --build .
 
+echo "Step 4"
 cd ..
 echo "Content of app dir:"
 ls -la app
