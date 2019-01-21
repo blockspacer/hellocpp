@@ -13,4 +13,5 @@ RUN cmake /usr/src/app -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build .
 RUN cp /usr/src/app/index.html /usr/src/build/bin/
 
+EXPOSE 80
 ENTRYPOINT ["./bin/app", "0.0.0.0", "80", "./bin/"]
