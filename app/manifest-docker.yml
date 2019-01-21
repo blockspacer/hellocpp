@@ -1,5 +1,6 @@
 applications:
 - name: dockercpp
   health-check-type: none
+  disk_quota: 2G
   docker:
     image: fouadhamdi/dockercpp
