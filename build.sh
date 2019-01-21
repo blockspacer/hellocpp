@@ -18,15 +18,6 @@ echo "Step 3"
 cmake --build .
 
 echo "Step 4"
-cd ..
-echo "Content of app dir:"
-ls -la repository/app
-
-echo "Content of build dir:"
-ls -la build
-
-echo "Content of build/bin dir:"
-ls -la build/bin
-
 echo "Archiving binaries"
-zip -r build/app.zip repository/app/app
+cd bin
+zip -r ../app.zip app
