@@ -25,5 +25,8 @@ ls -la repository/app
 echo "Content of build dir:"
 ls -la build
 
+echo "Content of build/bin dir:"
+ls -la build/bin
+
 echo "Archiving binaries"
 zip -r build/app.zip repository/app/app
