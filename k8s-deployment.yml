@@ -17,5 +17,7 @@ spec:
       containers:
       - name: hellocpp
         image: fouadhamdi/dockercpp
+        ports:
+        - containerPort: 80
       imagePullSecrets:
       - name: regcred
