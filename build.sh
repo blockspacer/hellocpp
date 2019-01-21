@@ -15,6 +15,9 @@ ls -la build
 
 cd dist
 
+echo "Content above dist:"
+ls -la ..
+
 echo "Step 1"
 conan install ../app
 echo "Step 2"
